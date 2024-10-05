@@ -1,0 +1,6 @@
+./data/cache
+*.pyc
+./data
+./data/*
+data/*
+data\__pycache__
