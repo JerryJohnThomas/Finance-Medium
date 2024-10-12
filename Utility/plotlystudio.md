@@ -4,7 +4,8 @@
 ```
 import chart_studio
 username='jerryfinance'
-api_key='DmH1HMvvHeyFXY06cX69'
+api_key='DmH1HMvvHeyFXY06cX69' 
+# This is a sample api key, which is no longer working, please generate one
 chart_studio.tools.set_credentials_file(username=username,
                                         api_key=api_key)
 
