@@ -6,3 +6,7 @@ data/*
 data\__pycache__
 
 *.env
+
+Notebooks/wandb/*
+
+

@@ -3,3 +3,6 @@ pandas
 seaborn
 plotly
 chart-studio
+scikit-learn
+torch
+wandb
