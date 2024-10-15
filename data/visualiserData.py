@@ -84,3 +84,66 @@ def plot_stock_metric(df, ticker, metric):
 
 # Example: Plot Close prices
 # plot_stock_metric(stock_data['AAPL'], 'AAPL', 'Close')
+
+def plot_predictions_true_and_actual(traces, all_tickers):
+    """Generate and display the Plotly plot."""
+    # Create a Plotly figure
+    fig = go.Figure()
+
+    # Add all traces to the figure
+    for trace in traces:
+        fig.add_trace(trace)
+
+    # Create dynamic dropdown for all tickers
+    buttons = []
+    for ticker in all_tickers:
+        buttons.append({
+            'label': ticker,
+            'method': 'update',
+            'args': [
+                {'visible': [trace.name.startswith(ticker) for trace in traces]},
+                {'title': f'{ticker} Predictions vs True Values'}
+            ]
+        })
+
+    # Add an "All" option
+    buttons.append({
+        'label': 'All',
+        'method': 'update',
+        'args': [
+            {'visible': [True] * len(traces)},
+            {'title': 'All Stocks Predictions vs True Values'}
+        ]
+    })
+
+    # Update the layout of the plot with dropdown menu
+    fig.update_layout(
+        title='Predictions vs True Values for Selected Stocks',
+        xaxis_title='Date',
+        yaxis_title='Value',
+        legend_title='Legend',
+        showlegend=True,
+        updatemenus=[
+            {
+                'buttons': buttons,
+                'direction': 'down',
+                'showactive': True,
+                'active': len(buttons) - 1  # Set the last button ('All') as active
+            }
+        ],
+        plot_bgcolor='white',  # Set plot background color to white
+        paper_bgcolor='white',  # Set paper background color to white
+        xaxis=dict(
+            gridcolor='lightgray',  # Set grid color for x-axis
+            gridwidth=1              # Set grid width for x-axis
+        ),
+        yaxis=dict(
+            gridcolor='lightgray',  # Set grid color for y-axis
+            gridwidth=1              # Set grid width for y-axis
+        )
+    )
+    
+    # Display the plot
+    fig.show()
+
+    return fig
